@@ -27,164 +27,128 @@
 
     <style>
         :root {
-            --primary: #00d2ff;
-            --accent: #3a7bd5;
+            --primary: #00e5ff;
+            --accent: #007bff;
             --dark: #020617;
-            --glass: rgba(255, 255, 255, 0.02);
-            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border-glass: rgba(255, 255, 255, 0.15);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
         
         body { 
             background-color: var(--dark); 
-            color: #f8fafc; 
+            color: var(--text-main); 
             overflow-x: hidden;
-            /* BACKGROUND MEMPESONA DENGAN GRADASI AURA */
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(58, 123, 213, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(0, 210, 255, 0.1) 0%, transparent 40%),
-                var(--dark);
+            background: radial-gradient(circle at 50% -20%, #0f172a 0%, #020617 100%);
         }
 
         header { 
-            padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
             backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass);
             position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo { font-size: 24px; font-weight: 900; letter-spacing: -1px; color: #fff; }
+        .logo { font-size: 22px; font-weight: 900; color: #fff; text-decoration: none; }
         .logo span { color: var(--primary); }
+        .btn-call-nav { color: var(--primary); font-weight: 800; border: 1.5px solid var(--primary); padding: 6px 15px; border-radius: 8px; font-size: 14px; }
 
         .hero { 
-            text-align: center; padding: 120px 20px 80px; 
-            background: url('https://ciledugpromo.biz.id/uploads/SWJayaMotor:20260219-080617-bengkel-mobil-dan-spesialis-ac-swjayamotor-karang-tengah.webp') no-repeat center center/cover;
-            background-attachment: fixed;
-            position: relative;
+            text-align: center; padding: 100px 20px 80px; 
+            background: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.95)), 
+                        url('https://ciledugpromo.biz.id/uploads/SWJayaMotor:20260219-080617-bengkel-mobil-dan-spesialis-ac-swjayamotor-karang-tengah.webp') center/cover no-repeat;
+            background-attachment: scroll; /* Scroll lebih ringan dibanding fixed untuk mobile speed */
         }
 
-        .hero::before {
-            content: ""; position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.7), var(--dark));
-        }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.1; margin-bottom: 15px; letter-spacing: -1.5px; }
+        .hero h1 span { color: var(--primary); text-shadow: 0 0 25px rgba(0, 229, 255, 0.4); }
+        .hero p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 35px; max-width: 700px; margin-inline: auto; }
 
-        .hero-content { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
-        .hero h1 span { color: var(--primary); text-shadow: 0 0 30px rgba(0, 210, 255, 0.5); }
-        .hero p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 40px; }
-
-        /* 7. REVISI TOMBOL SERVICE: LEBIH SEIMBANG & EYECATCHING */
+        /* 7. REVISI TOMBOL SERVICE: SEIMBANG & EYECATCHING */
+        .aura-btn-wrap { display: inline-block; padding: 3px; border-radius: 15px; background: linear-gradient(90deg, var(--primary), var(--accent)); animation: glowMove 3s linear infinite; }
         .aura-btn {
-            position: relative; display: inline-flex; 
-            padding: 14px 40px; /* Padding disesuaikan agar tidak rapat */
-            color: #fff; background: #000; 
-            font-weight: 700; font-size: 1rem; letter-spacing: 2px;
-            border-radius: 12px; overflow: hidden; border: none; 
-            cursor: pointer; text-decoration: none;
-            transition: transform 0.3s;
+            display: inline-flex; padding: 12px 45px; color: #fff; background: #000; 
+            font-weight: 800; font-size: 1.1rem; letter-spacing: 3px; border-radius: 12px;
+            text-decoration: none; border: none; transition: 0.3s;
         }
-
-        .aura-btn:hover { transform: scale(1.05); }
-
-        .aura-btn::before {
-            content: ""; position: absolute; top: -150%; left: -50%; width: 200%; height: 400%;
-            background: conic-gradient(transparent, transparent, var(--primary), transparent);
-            animation: rotateGlow 3s linear infinite;
-        }
-
-        .aura-btn::after {
-            content: "SERVICE"; /* Teks Service yang proporsional */
-            position: absolute; inset: 2px;
-            background: #020617; border-radius: 10px; 
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        @keyframes rotateGlow { 100% { transform: rotate(360deg); } }
+        .aura-btn:hover { background: transparent; }
+        @keyframes glowMove { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
 
         /* GALLERY: FIX TAMPILAN FULL DI DESKTOP */
         .gallery-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 20px; padding: 40px 5%; max-width: 1200px; margin: 0 auto;
         }
-        
         .gallery-grid img { 
-            width: 100%; height: 250px; /* Tinggi ditambah agar tidak terpotong */
-            object-fit: cover; border-radius: 15px; 
-            border: 1px solid var(--border-glass);
-            transition: 0.5s;
+            width: 100%; height: 260px; object-fit: cover; border-radius: 15px; 
+            border: 1px solid var(--border-glass); transition: 0.4s;
         }
+        .gallery-grid img:hover { transform: translateY(-8px); border-color: var(--primary); }
 
-        .gallery-grid img:hover { transform: translateY(-10px); border-color: var(--primary); }
-
-        /* FAQ SELLING */
-        .faq-section { padding: 80px 5%; max-width: 900px; margin: 0 auto; }
-        .faq-item { 
-            background: var(--glass); border: 1px solid var(--border-glass);
-            padding: 25px; border-radius: 15px; margin-bottom: 20px;
-        }
+        /* 1. VISIBLE LSI / FAQ */
+        .faq-section { padding: 60px 5%; max-width: 900px; margin: 0 auto; }
+        .faq-item { background: var(--glass); border: 1px solid var(--border-glass); padding: 25px; border-radius: 15px; margin-bottom: 15px; border-left: 4px solid var(--primary); }
         .faq-item h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; }
 
-        .map-section { padding: 60px 5%; text-align: center; }
-        .map-box { 
-            max-width: 800px; margin: 0 auto; border-radius: 20px; 
-            overflow: hidden; border: 1px solid var(--primary); 
-        }
+        /* 8. GOOGLE MAPS AKURAT */
+        .map-section { padding: 40px 5%; text-align: center; }
+        .map-box { max-width: 750px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1px solid var(--primary); }
 
-        footer { padding: 40px; text-align: center; color: #475569; font-size: 14px; }
+        footer { padding: 40px; text-align: center; color: #64748b; font-size: 13px; border-top: 1px solid var(--border-glass); }
 
         .float-wa { 
-            position: fixed; bottom: 30px; right: 30px; background: #22c55e; 
+            position: fixed; bottom: 25px; right: 25px; background: #22c55e; 
             width: 60px; height: 60px; border-radius: 50%; display: flex; 
             justify-content: center; align-items: center; z-index: 1000;
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
         }
 
         @media (max-width: 600px) {
-            .gallery-grid { grid-template-columns: 1fr; }
-            .gallery-grid img { height: 200px; }
+            .hero { padding: 80px 15px 50px; }
+            .gallery-grid { grid-template-columns: 1fr; gap: 10px; }
+            .gallery-grid img { height: 210px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">SWJAYA<span>MOTOR</span></div>
-        <a href="tel:081315416584" style="color: var(--primary); font-weight: 800; font-size: 0.9rem;">HUBUNGI</a>
+        <a href="#" class="logo">SWJAYA<span>MOTOR</span></a>
+        <a href="tel:081315416584" class="btn-call-nav">HUBUNGI</a>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Bengkel <span>Specialist AC</span> & Tune Up Karang Tengah</h1>
-            <p>Pusat perawatan mobil modern dengan pengerjaan transparan, jujur, dan bergaransi resmi.</p>
-            <a href="https://wa.me/6281315416584" class="aura-btn"></a>
+        <h1>Bengkel <span>Specialist AC</span> & Tune Up Karang Tengah</h1>
+        <p>Solusi servis AC mobil dan mesin profesional dengan pengerjaan transparan, jujur, dan bergaransi resmi.</p>
+        <div class="aura-btn-wrap">
+            <a href="https://wa.me/6281315416584?text=Halo%20SW%20Jaya%20Motor,%20saya%20mau%20booking%20service" class="aura-btn">SERVICE</a>
         </div>
     </section>
 
     <section class="gallery">
         <div class="gallery-grid">
-            <img src="https://ciledugpromo.biz.id/gambarbebas/20260219-075143_tempat-service-mobil-rutin-ganti-oli-raden-saleh.jpg" alt="Bengkel Ganti Oli Karang Tengah" loading="lazy">
-            <img src="https://ciledugpromo.biz.id/gambarbebas/20260219-075143_montir-ahli-perbaikan-mesin-mobil-tune-up-ciledug.jpg" alt="Tune Up Mesin Ciledug" loading="lazy">
-            <img src="https://ciledugpromo.biz.id/gambarbebas/20260219-075143_service-ac-mobil-pres-selang-las-alumunium-tangerang.jpg" alt="Service AC Mobil Tangerang" loading="lazy">
-            <img src="https://ciledugpromo.biz.id/gambarbebas/20260219-075143_jasa-turun-mesin-overhaul-mobil-ciledug-tangerang.jpg" alt="Turun Mesin Mobil Karang Tengah" loading="lazy">
+            <img src="https://ciledugpromo.biz.id/gambarbebas/20260219-075143_tempat-service-mobil-rutin-ganti-oli-raden-saleh.jpg" alt="Bengkel Ganti Oli Karang Tengah Raden Saleh" loading="lazy">
+            <img src="https://ciledugpromo.biz.id/gambarbebas/20260219-075143_montir-ahli-perbaikan-mesin-mobil-tune-up-ciledug.jpg" alt="Tune Up Mesin Mobil Ciledug Karang Tengah" loading="lazy">
+            <img src="https://ciledugpromo.biz.id/gambarbebas/20260219-075143_service-ac-mobil-pres-selang-las-alumunium-tangerang.jpg" alt="Service AC Mobil Karang Tengah Tangerang" loading="lazy">
+            <img src="https://ciledugpromo.biz.id/gambarbebas/20260219-075143_jasa-turun-mesin-overhaul-mobil-ciledug-tangerang.jpg" alt="Bengkel Turun Mesin Mobil Karang Tengah" loading="lazy">
         </div>
     </section>
 
     <section class="faq-section">
-        <h2 style="text-align: center; margin-bottom: 40px; font-size: 2rem;">Solusi Service Terpercaya</h2>
         <div class="faq-item">
-            <h3>Apa keunggulan service AC di SW Jaya Motor?</h3>
-            <p>Kami menggunakan peralatan modern untuk diagnosa akurat. Kami adalah <strong>bengkel AC mobil terdekat di Karang Tengah</strong> yang menjamin dingin maksimal dalam satu kali pengerjaan.</p>
+            <h3>Spesialis AC Mobil Terdekat di Karang Tengah?</h3>
+            <p>SW Jaya Motor adalah pakar <strong>Service AC Mobil Karang Tengah</strong> yang menangani isi freon, cuci evaporator, hingga perbaikan kompresor untuk warga Ciledug dan sekitarnya.</p>
         </div>
         <div class="faq-item">
-            <h3>Dimana alamat lengkap bengkel?</h3>
-            <p>Lokasi kami sangat strategis di Jl. Raden Saleh No.40. Kami melayani warga <strong>Ciledug, Larangan, dan sekitarnya</strong> dengan standar kualitas tinggi.</p>
+            <h3>Dimana alamat lengkap SW Jaya Motor?</h3>
+            <p>Kami berlokasi di Jl. Raden Saleh No.40. Kami melayani <strong>Bengkel Mobil Karang Tengah Tangerang</strong> dengan standar kualitas terbaik dan harga kompetitif.</p>
         </div>
     </section>
 
     <section class="map-section">
         <div class="map-box">
-            <a href="https://maps.app.goo.gl/LuPsH4LjBk4YKkDt6" target="_blank">
+            <a href="https://maps.app.goo.gl/LuPsH4LjBk4YKkDt6" target="_blank" aria-label="Buka Google Maps">
                 <img src="https://ciledugpromo.biz.id/gambarbebas/20260220-015429_peta-lokasi.png" alt="Peta Lokasi SW Jaya Motor" style="width: 100%; display: block;">
             </a>
         </div>
@@ -194,8 +158,8 @@
         <p>© 2026 SW JAYA MOTOR × CILEDUGPROMO.BIZ.ID</p>
     </footer>
 
-    <a href="https://wa.me/6281315416584" class="float-wa">
-        <svg width="30" height="30" fill="white" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z"/></svg>
+    <a href="https://wa.me/6281315416584" class="float-wa" aria-label="Chat WhatsApp">
+        <svg width="32" height="32" fill="white" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z"/></svg>
     </a>
 
 </body>
